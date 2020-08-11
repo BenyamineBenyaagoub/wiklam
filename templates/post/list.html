@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{post}} {% endblock %}
+
+{% block banner_content %}
+    <h2 class="page-cover-tittle f_48"> BLOG </h2>
+    <p> Un espacio para compartir. </p>
+{% endblock %} 
+
+{% block content %}
+ <section class="sermons_work_area section_gap">
+<div class="container">
+
+{%for post in posts %}
+        
+          {{ MEDIA_ROOT }}{{post.image_header}}
+            <div class=" py-5">
+                <div class="item row">
+                    <div class="col-lg-8">
+                        <div class="sermons_image">
+                            <img src="{{ media_url }}{{image_header}}" alt="">
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="sermons_content">
+                            <h3 class="title_color">{{post.title}}</h3>
+                            <ul class="list_style sermons_category">
+                                <li><i class="lnr lnr-user"></i><span>Categoria: </span><a href="#">Nombre categoria</a>
+                                </li>
+                                <li><i class="lnr lnr-database"></i><span>Usuario: </span> <a href="">{{post.title}}</a></li>
+                                <li><i class="lnr lnr-calendar-full"></i><span>Date:</span> {{post.created}}</li>
+                            </ul>
+                            <a href="/blog/{{post.id}}" class="btn_hover">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+{% endfor %}
+           </div>
+ </section>
+
+{% endblock %}    
+        
