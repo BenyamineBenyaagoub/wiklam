@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'wikislam.urls'
@@ -79,11 +80,19 @@ WSGI_APPLICATION = 'wikislam.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+} """
+
+import dj_database_url
+
+from decouple import config
+
+DATABASES = {
+    'default': dj_database_url.config( default=config('DATABASE_URL') )
 }
 
 
@@ -134,16 +143,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
+STATICFILES_DIRS = (
+    os.path.join( BASE_DIR, 'static' )
+)
+
 # Media Files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-""" # Email
-EMAIL_USE_TLS = False
-EMAIL_HOST = '10.16.0.99'
-EMAIL_HOST_USER = 'no-reply@ittravelservices.com'
-EMAIL_PORT = 25 """
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'moritowow@gmail.com'
@@ -151,3 +160,4 @@ EMAIL_HOST_PASSWORD = 'fibonacci'
 EMAIL_PORT = 587
 
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
