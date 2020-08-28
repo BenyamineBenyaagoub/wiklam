@@ -25,7 +25,7 @@ SECRET_KEY = 'wmu5mdoat12$=-v4s!(va_+n2_ej(=%s=-d((p0cd0#ti&5spz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['142.93.227.95']
 
 STATIC_URL = '/static/'
 
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'wikislam.wsgi.application'
 }
  """
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'OPTIONS': {
@@ -101,9 +101,27 @@ DATABASES = {
         'HOST': 'db-postgresql-ams3-43167-do-user-7828975-0.a.db.ondigitalocean.com',
         'PORT': 25060,
     }
-}
+} """
 
 
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'wikislam',
+            'USER': 'toor',
+            'PASSWORD': 'trabajo1',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
 
 """ import dj_database_url
 
