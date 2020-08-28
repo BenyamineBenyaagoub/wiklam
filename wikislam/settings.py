@@ -103,7 +103,7 @@ WSGI_APPLICATION = 'wikislam.wsgi.application'
     }
 } """
 
-
+""" 
 if DEBUG:
     DATABASES = {
         'default': {
@@ -111,17 +111,17 @@ if DEBUG:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'wikislam',
-            'USER': 'toor',
-            'PASSWORD': 'trabajo1',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
+else: """
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'wikislam',
+        'USER': 'toor',
+        'PASSWORD': 'trabajo1',
+        'HOST': 'localhost',
+        'PORT': '',
     }
+}
 
 """ import dj_database_url
 
