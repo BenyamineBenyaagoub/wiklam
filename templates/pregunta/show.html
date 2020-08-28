@@ -1,0 +1,393 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block title %} {{pregunta}} {% endblock %}
+
+{% block banner_content %}
+<h2 class="page-cover-tittle f_48">{{pregunta.title}}</h2>
+<p>By @{{pregunta.user}}</p>
+{% endblock %}
+
+{% block content %}
+
+<!--================Blog Area =================-->
+<section class="blog_area single-post-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div class="single-post row">
+                    <!-- <div class="col-lg-12">
+                        <div class="feature-img">
+                            <img class="img-fluid" src="image/blog/feature-img1.jpg" alt="">
+                        </div>
+                    </div> -->
+
+                    <div class="col-lg-12 col-md-12 blog_details">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h2>{{pregunta.title}} </h2>
+                                
+                               
+                            </div>
+                            <div class="col-md-2 ">
+                               
+
+            
+                            </div>
+                        </div>
+                        {{ pregunta.pregunta }}
+                        
+                    </div>
+
+                </div>
+
+            
+
+                <!--   <div class="navigation-area">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                                    <div class="thumb">
+                                        <a href="#"><img class="img-fluid" src="image/blog/prev.jpg" alt=""></a>
+                                    </div>
+                                    <div class="arrow">
+                                        <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
+                                    </div>
+                                    <div class="detials">
+                                        <p>Prev Post</p>
+                                        <a href="#"><h4>Space The Final Frontier</h4></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                                    <div class="detials">
+                                        <p>Next Post</p>
+                                        <a href="#"><h4>Telescopes 101</h4></a>
+                                    </div>
+                                    <div class="arrow">
+                                        <a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
+                                    </div>
+                                    <div class="thumb">
+                                        <a href="#"><img class="img-fluid" src="image/blog/next.jpg" alt=""></a>
+                                    </div>										
+                                </div>									
+                            </div>
+                        </div> -->
+
+                <div class="comments-area">
+                    <h4>{{respuestas|length}} Respuestas</h4>
+
+                    {% for r in respuestas %}
+                    <div class="comment-list">
+                        <div class="single-comment justify-content-between d-flex">
+                            <div class="user justify-content-between d-flex">
+                                <div class="thumb">
+                                    <img src="image/blog/c1.jpg" alt="">
+                                </div>
+                                <div class="desc">
+                                    <h5><a href="#">{{r.user}}</a></h5>
+                                    <p class="date">{{r.created}}</p>
+                                    <p class="comment">
+                                        {{r.text}}
+                                    </p>
+                                </div>
+                            </div>
+                                    <div class="reply-btn">
+                                        <button type="button" class="btn-reply text-uppercase" data-toggle="modal" onclick="responder('{{r.id}}')" data-target="#responder-coment">
+                                            Responder
+                                        </button>
+                                    </div> 
+                        </div>
+                    </div>
+                    {% for r in r.respuesta.all %}
+                    <div class="comment-list left-padding">
+                        <div class="single-comment justify-content-between d-flex">
+                            <div class="user justify-content-between d-flex">
+                                <div class="thumb">
+                                    <img src="image/blog/c2.jpg" alt="">
+                                </div>
+                                <div class="desc">
+                                    <h5><a href="#">{{r.user}}</a></h5>
+                                    <p class="date">{{r.created}}</p>
+                                    <p class="comment">
+                                        {{r.text}}
+                                    </p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>	
+                    {% endfor %}
+                    {% endfor %}
+                    <!--    <div class="comment-list left-padding">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
+                                            <img src="image/blog/c2.jpg" alt="">
+                                        </div>
+                                        <div class="desc">
+                                            <h5><a href="#">Elsie Cunningham</a></h5>
+                                            <p class="date">December 4, 2017 at 3:12 pm </p>
+                                            <p class="comment">
+                                                Never say goodbye till the end comes!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="reply-btn">
+                                           <a href="" class="btn-reply text-uppercase">reply</a> 
+                                    </div>
+                                </div>
+                            </div>	 -->
+
+
+
+
+                </div>
+
+
+
+                <div class="comment-form">
+                    <h4>Deja una Respuesta:</h4>
+                    <form action="/respuesta/crear/{{pregunta.id}}/" method="POST">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <input type="hidden" name="user" value="{{user.id}}">
+                            <input type="hidden" name="pregunta" value="{{pregunta.id}}">
+                            <input type="checkbox" name="eshijo"  hidden>   
+
+                            <textarea class="form-control mb-10" rows="5" name="text" placeholder="Messege"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Comentario...'"
+                                required=""></textarea>
+                        </div>
+                        <button class="primary-btn button_hover">Responder</button>
+
+
+                    </form>
+                </div>
+
+                <!-- Button trigger modal -->
+         
+            
+            <!-- Modal -->
+            <div class="modal fade" id="responder-coment" tabindex="-1" role="dialog" aria-labelledby="responder-comentLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="responder-comentLabel">Respuesta:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                        <div class="comment-form">
+                            
+                            <form action="/respuesta/r/crear/{{pregunta.id}}/" method="POST">
+                                {% csrf_token %}
+        
+                                <div class="form-group">
+                                    <input type="hidden" name="user" value="{{user.id}}">
+                                    <input type="hidden" name="pregunta" value="{{pregunta.id}}">
+                                    <input type="hidden" name="respuesta"  id="respusta">
+                                    <input type="checkbox" name="eshijo"  checked hidden>   
+                                    <textarea class="form-control mb-10 emojionearea" rows="5" name="text" placeholder="Messege"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Comentario...'"
+                                        required=""></textarea>
+                                </div>
+                                <button class="primary-btn button_hover">Responder</button>
+        
+        
+                            </form>
+                        </div>
+                    
+               
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+
+              
+
+
+
+                    <!--   <aside class="single_sidebar_widget search_widget">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search Posts">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+                            </span>
+                        </div>
+                        <div class="br"></div>
+                    </aside> -->
+                    <aside class="single_sidebar_widget author_widget mb-5">
+                        <div class="blog_info text-right">
+                            <div class="post_tag">
+
+                                {%for a in pregunta.categories.all %}
+
+                                <a href="/blog/category/{{a}}">{{a}},</a>
+                                {% endfor %}
+
+                            </div>
+                            <ul class="blog_meta list_style">
+                                <li><a href="#">{{pregunta.user}}<i class="lnr lnr-user"></i></a></li>
+                                <li><a href="#">{{pregunta.created}}<i class="lnr lnr-calendar-full"></i></a></li>
+                                <li><a href="#">{{pregunta.views}}<i class="lnr lnr-eye"></i></a></li>
+                                <!--   <li><a href="#">{{post.likes}}<i class="lnr lnr-thumbs-up"></i></a></li> -->
+                            </ul>
+
+                        </div>
+                    </aside>
+
+                   
+
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Posts Más Prulares</h3>
+                        {% for p in posts %}
+                        <div class="media post_item">
+                            <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{p.image_header}}" alt="post">
+                            <div class="media-body">
+                                <a href="/blog/{{p.id}}">
+                                    <h3>{{p.title}}</h3>
+                                </a>
+                                <p>{{p.created}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="br"></div>
+                    </aside>
+                    <!--           
+                    <aside class="single_sidebar_widget ads_widget">
+                        <a href="#"><img class="img-fluid" src="image/blog/add.jpg" alt=""></a>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Post Por Catgoría</h4>
+                        <ul class="list_style cat-list">
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Technology</p>
+                                    <p>37</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Lifestyle</p>
+                                    <p>24</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Fashion</p>
+                                    <p>59</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Art</p>
+                                    <p>29</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Food</p>
+                                    <p>15</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Architecture</p>
+                                    <p>09</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Adventure</p>
+                                    <p>44</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="br"></div>
+                    </aside> -->
+                    <!--     <aside class="single-sidebar-widget newsletter_widget">
+                        <h4 class="widget_title">Newsletter</h4>
+                        <p>
+                            Here, I focus on a range of items and features that we use in life without
+                            giving them a second thought.
+                        </p>
+                        <div class="form-group d-flex flex-row">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" id="inlineFormInputGroup"
+                                    placeholder="Enter email" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Enter email'">
+                            </div>
+                            <a href="#" class="bbtns">Subcribe</a>
+                        </div>
+                        <p class="text-bottom">You can unsubscribe at any time</p>
+                        <div class="br"></div>
+                    </aside> -->
+
+                    <aside class="single-sidebar-widget tag_cloud_widget">
+                        <h4 class="widget_title">Categorías</h4>
+
+                        <ul class="list_style">
+                            {% for p in categorys %}
+                            <li><a href="/blog/category/{{p.name}}">{{p.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </aside>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Blog Area =================-->
+<script>
+
+    function responder(respuesta){
+        $("#respusta").val(respuesta)
+    }
+
+    $(document).ready(function() {
+	$(".emojionearea").emojioneArea({
+  	
+		pickerPosition: "right",
+    	tonesStyle: "bullet",
+		events: {
+         	keyup: function (editor, event) {
+           		console.log(editor.html());
+           		console.log(this.getText());
+        	}
+    	}
+	});
+});
+
+</script>
+
+<style>
+    img {
+        max-width: 100%;
+    }
+
+    .post_item img {
+        max-width: 18%;
+    }
+
+    .banner_area {
+    min-height: 680px;
+    background: -webkit-gradient(linear, left top, right top, from(rgba(4, 9, 30, 0.8)), to(rgba(4, 9, 30, 0.8))), url("{% static 'img/foto-pregunta.jpg'%}");
+    background: -webkit-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)), url("{% static 'img/foto-pregunta.jpg'%}");
+    background: -o-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)), url("{% static 'img/foto-pregunta.jpg'%}");
+    background: linear-gradient(to right, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)), url("{% static 'img/foto-pregunta.jpg'%}");
+    background-size: cover;
+}
+</style>
+
+{% endblock %}

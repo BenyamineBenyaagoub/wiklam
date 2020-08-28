@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'wmu5mdoat12$=-v4s!(va_+n2_ej(=%s=-d((p0cd0#ti&5spz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'post',
+    'pregunta',
     'ckeditor'
 ]
 
@@ -85,15 +86,32 @@ WSGI_APPLICATION = 'wikislam.wsgi.application'
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-} """
+}
+ """
 
-import dj_database_url
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'OPTIONS': {
+            'options': '-c search_path=public'
+        },
+        'NAME': 'wikislam',
+        'USER': 'doadmin',
+        'PASSWORD': 't7331xwuo8kch3u1',
+        'HOST': 'db-postgresql-ams3-43167-do-user-7828975-0.a.db.ondigitalocean.com',
+        'PORT': 25060,
+    }
+}
+
+
+
+""" import dj_database_url
 
 from decouple import config
 
 DATABASES = {
     'default': dj_database_url.config( default=config('DATABASE_URL') )
-}
+} """
 
 
 # Password validation
@@ -117,14 +135,23 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
+
 AUTH_USER_MODEL = "home.User" 
+
+LOGIN_URL = 'login'
+
+LOGIN_URL = 'login'
+
+LOGIN_REDIRECT_URL = 'home'
+
+LOGOUT_REDIRECT_URL = 'login'
 
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'UTC'
 
@@ -143,20 +170,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-STATICFILES_DIRS = (
+""" STATICFILES_DIRS = (
     os.path.join( BASE_DIR, 'static' )
 )
-
+ """
 # Media Files
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
+MEDIA_ROOT = os.path.join(BASE_DIR,'MEDIA')
+MEDIA_URL = "media/"
 
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'moritowow@gmail.com'
-EMAIL_HOST_PASSWORD = 'fibonacci'
+EMAIL_HOST_PASSWORD = 'fibonacsci'
 EMAIL_PORT = 587
 
 

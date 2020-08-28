@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Inicia sesión o regístrate en WIKISLAM! {% endblock %}
+
+{% block banner_content %}
+<h2 class="page-cover-tittle f_48">  </h2>
+<!--     <p> Un espacio para compartir. </p>
+ -->{% endblock %}
+
+{% block content %}
+<div class="container">
+
+
+
+
+
+
+      <body onLoad="iFrameOn();">
+            <form class="contact_form my-5" action="" method="post" enctype='multipart/form-data'>
+                  {% csrf_token %}
+
+                  <div class="form-group">
+                        <label for="id_title"> Nombre </label>
+                        {{form.nombre}}
+                  </div>
+                  <div class="form-group">
+                        <label for="id_title"> Apelliddo </label>
+                        {{form.apellido}}
+                  </div>
+                  <div class="form-group">
+                        <label for="id_title"> Logo </label>
+                        {{form.logo}}
+                  </div>
+
+
+
+
+
+                  <div class="form-group">
+                        <label for="biografia"> Biografia </label>
+                        <!-- <div class="py-3 " id="wysiwyg_cp" style="width: 100%;">
+
+                              <button type="button" id="boldButton" class="btn btn-default" onClick="iBold()"><i
+                                          class="fa fa-bold" aria-hidden="true"></i></button>
+
+                              <button type="button" id="underlineButton" class="btn btn-default"
+                                    onClick="iUnderline()"><i class="fa fa-underline" aria-hidden="true"></i></button>
+
+                              <button type="button" id="italicButton" class="btn btn-default" onClick="iItalic()"><i
+                                          class="fa fa-italic" aria-hidden="true"></i></button>
+
+                              <button type="button" id="leftButton" class="btn btn-default" onClick="iLeft()"><i
+                                          class="fa fa-align-left" aria-hidden="true"></i></button>
+
+                              <button type="button" id="centerButton" class="btn btn-default" onClick="iCenter()"><i
+                                          class="fa fa-align-center" aria-hidden="true"></i></button>
+
+                              <button type="button" id="rightButton" class="btn btn-default" onClick="iRight()"><i
+                                          class="fa fa-align-right" aria-hidden="true"></i></button>
+
+                              <button type="button" id="justifyButton" class="btn btn-default" onClick="iJustify()"><i
+                                          class="fa fa-align-justify" aria-hidden="true"></i></button>
+
+
+                        </div>
+                        <textarea style="display:none;" name="biografia" id="biografia" cols="100" rows="14"></textarea>
+
+                        <iframe name="richTextField" id="richTextField" style=" width: 100%;
+                        border: solid 1px #ccc;"></iframe> -->
+                        {{form.biografia}}
+                  </div>
+
+
+
+                  <div class="col-md-12 text-right p-0">
+
+                        <button class="btn_hover btn_hover_two">Guardar</button>
+                  </div>
+            </form>
+      </body>
+</div>
+<style>
+      .pressed {
+            background: #000;
+            color: #FFF;
+      }
+
+      .hide {
+            visibility: hidden;
+      }
+      .banner_area {
+        background: -webkit-gradient(linear, left top, right top, from(rgba(4, 9, 30, 0.8)), to(rgba(4, 9, 30, 0.8))),
+        url("{% static 'img/foto-crear-blog.jpg'%}");
+        background: -webkit-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)),
+        url("{% static 'img/foto-crear-blog.jpg'%}");
+        background: -o-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)),
+        url("{% static 'img/foto-crear-blog.jpg'%}");
+        background: linear-gradient(to right, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)),
+        url("{% static 'img/foto-crear-blog.jpg'%}");
+        background-size: cover;
+    }
+</style>
+
+<script>
+      function iFrameOn() {
+            richTextField.document.designMode = 'On';
+      }
+
+      function iBold() {
+
+            $("#boldButton").toggleClass("pressed");
+            richTextField.document.execCommand('bold', false, null);
+
+      }
+
+      function iUnderline() {
+            $("#underlineButton").toggleClass("pressed");
+            richTextField.document.execCommand('underline', false, null);
+      }
+
+      function iItalic() {
+            $("#italicButton").toggleClass("pressed");
+            richTextField.document.execCommand('italic', false, null);
+      }
+
+      function iLeft() {
+
+            var board = document.getElementById("richTextField");
+            var content = board.contentWindow.document.body.innerHTML;
+
+            var doc = document.getElementById('richTextField').contentWindow.document;
+
+            board.contentWindow.document.body.setAttribute("style", "text-align:left;");
+
+
+      }
+
+      function iCenter() {
+            var board = document.getElementById("richTextField");
+            var content = board.contentWindow.document.body.innerHTML;
+
+            var doc = document.getElementById('richTextField').contentWindow.document;
+
+            console.log(content);
+
+            /*doc.open();
+            doc.write("<p id='contentID' style='text-align:right;>"+ content +"</p>");
+            doc.close();
+          */
+            board.contentWindow.document.body.setAttribute("style", "text-align:center;");
+      }
+
+      function iRight() {
+
+            var board = document.getElementById("richTextField");
+            var content = board.contentWindow.document.body.innerHTML;
+
+            var doc = document.getElementById('richTextField').contentWindow.document;
+
+            console.log(content);
+
+            board.contentWindow.document.body.setAttribute("style", "text-align:right;");
+
+            /*var content2 = board.contentWindow.document.body.innerHTML;
+            console.log(content2);
+            
+            doc.open();
+            doc.write(content);
+            doc.close();*/
+
+      }
+
+      function iJustify() {
+
+            var board = document.getElementById("richTextField");
+            var content = board.contentWindow.document.body.innerHTML;
+
+            var doc = document.getElementById('richTextField').contentWindow.document;
+
+            console.log(content);
+
+            board.contentWindow.document.body.setAttribute("style", "text-align:justify;");
+      }
+
+      richTextField.addEventListener("paste", function (e) {
+            e.preventDefault();
+
+            var text = e.clipboardData.getData("text/plain");
+            richTextField.document.execCommand("insertText", false, text);
+      });
+
+
+
+</script>
+{% endblock %}

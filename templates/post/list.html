@@ -4,21 +4,180 @@
 
 {% block banner_content %}
     <h2 class="page-cover-tittle f_48"> BLOG </h2>
-    <p> Un espacio para compartir. </p>
-{% endblock %} 
+<!--     <p> Un espacio para compartir. </p>
+ -->{% endblock %} 
 
 {% block content %}
- <section class="sermons_work_area section_gap">
-<div class="container">
 
+
+<!--================Blog Categorie Area =================-->
+<!-- <section class="blog_categorie_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="categories_post">
+                    <img src="image/blog/cat-post/cat-post-3.jpg" alt="post">
+                    <div class="categories_details">
+                        <div class="categories_text">
+                            <a href="blog-details.html"><h5>Social Life</h5></a>
+                            <div class="border_line"></div>
+                            <p>Enjoy your social life together</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="categories_post">
+                    <img src="image/blog/cat-post/cat-post-2.jpg" alt="post">
+                    <div class="categories_details">
+                        <div class="categories_text">
+                            <a href="blog-details.html"><h5>Politics</h5></a>
+                            <div class="border_line"></div>
+                            <p>Be a part of politics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="categories_post">
+                    <img src="image/blog/cat-post/cat-post-1.jpg" alt="post">
+                    <div class="categories_details">
+                        <div class="categories_text">
+                            <a href="blog-details.html"><h5>Food</h5></a>
+                            <div class="border_line"></div>
+                            <p>Let the food be finished</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!--================Blog Categorie Area =================-->
+
+<!--================Blog Area =================-->
+<section class="blog_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog_left_sidebar">
+                    {%for post in posts %}
+
+                    <article class="row blog_item blog_right_sidebar">
+                       <div class="col-md-3">
+                           <div class="blog_info text-right">
+                                <div class="post_tag">
+                                    {%for a in post.categories.all %}<a href="/blog/category/{{a}}"> {{a}} </a> ,{% endfor %}
+                                </div>
+                                <ul class="blog_meta list_style">
+                                    <li><a href="/usuario/{{post.user}}">{{post.user}}<i class="lnr lnr-user"></i></a></li>
+                                    <li><a href="#">{{post.created|date:"d - m - Y"}}<i class="lnr lnr-calendar-full"></i></a></li>
+                                    <li><a href="#">{{post.views}} Visitas<i class="lnr lnr-eye"></i></a></li>
+                                </ul>
+                            </div>
+                       </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}" alt="">
+                                <div class="blog_details">
+                                    <a href="blog-single.html"><h2>{{post.title}}</h2></a>
+                                    <p>{{post.post|striptags|safe|truncatewords:17}}</p>
+                                    <a href="/blog/{{post.id}}" class="view_btn button_hover">Leer más</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    {% endfor %}
+                    <!-- <nav class="blog-pagination justify-content-center d-flex">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">
+                                        <span class="lnr lnr-chevron-left"></span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a href="#" class="page-link">01</a></li>
+                            <li class="page-item active"><a href="#" class="page-link">02</a></li>
+                            <li class="page-item"><a href="#" class="page-link">03</a></li>
+                            <li class="page-item"><a href="#" class="page-link">04</a></li>
+                            <li class="page-item"><a href="#" class="page-link">09</a></li>
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">
+                                        <span class="lnr lnr-chevron-right"></span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav> -->
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+              
+                  
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Posts más populares</h3>
+                        {% for p in pposts %}
+                        <div class="media post_item">
+                            <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{p.image_header}}" alt="post">
+                            <div class="media-body">
+                                <a href="/blog/{{p.id}}">
+                                    <h3>{{p.title}}</h3>
+                                </a>
+                                <p>{{p.created}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="br"></div>
+                    </aside>
+
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Últimas consultas</h3>
+                        {% for p in preguntas %}
+                        <div class="media post_item">
+                            <div class="media-body">
+                                <a href="/consultorio/{{p.id}}">
+                                    <h3>{{p.title}}</h3>
+                                </a>
+                                <p>{{p.created}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="br"></div>
+                    </aside>
+
+                    <aside class="single-sidebar-widget tag_cloud_widget">
+                        <h4 class="widget_title">Categorías</h4>
+
+                        <ul class="list_style">
+                            {% for p in categorys %}
+                            <li><a href="/blog/category/{{p.name}}">{{p.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </aside>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Blog Area =================-->
+<a href="/blog/crear/" class="btn_hover btn_hover_two btn-fixed">
+
+    Nueva Entrada
+
+</a>
+
+<!-- 
 {%for post in posts %}
         
-          {{ MEDIA_ROOT }}{{post.image_header}}
             <div class=" py-5">
                 <div class="item row">
                     <div class="col-lg-8">
                         <div class="sermons_image">
-                            <img src="{{ media_url }}{{image_header}}" alt="">
+                            <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}" alt="">
                            
                         </div>
                     </div>
@@ -26,10 +185,11 @@
                         <div class="sermons_content">
                             <h3 class="title_color">{{post.title}}</h3>
                             <ul class="list_style sermons_category">
-                                <li><i class="lnr lnr-user"></i><span>Categoria: </span><a href="#">Nombre categoria</a>
+                                <li><i class="lnr lnr-user"></i><span>Categoria: </span>{%for a in post.categories.all %}<a href="/blog/category/{{a}}"> {{a}} </a> ,{% endfor %}
                                 </li>
                                 <li><i class="lnr lnr-database"></i><span>Usuario: </span> <a href="">{{post.title}}</a></li>
-                                <li><i class="lnr lnr-calendar-full"></i><span>Date:</span> {{post.created}}</li>
+                                <li><i class="lnr lnr-calendar-full"></i><span>Fecha:</span> {{post.created}}</li>
+                                <li><i class="lnr lnr-eye"></i><span>Visitas:</span> {{post.views}}</li>
                             </ul>
                             <a href="/blog/{{post.id}}" class="btn_hover">Leer más</a>
                         </div>
@@ -38,9 +198,32 @@
 
 
             </div>
-{% endfor %}
-           </div>
- </section>
+{% endfor %} -->
+         
+
+
+ <style>
+    .banner_area {
+    min-height: 380px;
+    background: -webkit-gradient(linear, left top, right top, from(rgba(4, 9, 30, 0.8)), to(rgba(4, 9, 30, 0.8))), url("{% static 'img/foto-blog.jpg'%}");
+    background: -webkit-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)), url("{% static 'img/foto-blog.jpg'%}");
+    background: -o-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)), url("{% static 'img/foto-blog.jpg'%}");
+    background: linear-gradient(to right, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)), url("{% static 'img/foto-blog.jpg'%}");
+    background-size: cover;
+}
+.sermons_image {
+    max-height: 300px;
+    overflow: hidden;
+}
+.sermons_image img{
+    max-width: 100%;
+    width: 100%;
+}
+.post_item img {
+        max-width: 18%;
+    }
+</style>
+
 
 {% endblock %}    
         

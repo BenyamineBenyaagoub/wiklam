@@ -12,7 +12,9 @@ from django.views.static import serve
 urlpatterns = [
     path('', include('home.urls')),
     path('', include('post.urls')),
+    path('', include('pregunta.urls')),
+
     path('admin-bt/', admin.site.urls),
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

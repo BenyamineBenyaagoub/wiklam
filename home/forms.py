@@ -14,10 +14,24 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username' , 'password1', 'password2' , 'email' ] 
+        fields = ['username' , 'password1', 'password2' , 'email' , 'nombre','apellido','logo' ] 
        
     """     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)
         self.fields['agente'].required = False
         self.fields['empleado'].required = False
         self.fields['logo'].required = False """
+
+class ModUserForm(ModelForm):
+
+
+    class Meta:
+        model = User
+        fields = [ 'nombre','apellido','logo','biografia' ]
+
+    def __init__(self, *args, **kwargs):
+        super(ModUserForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control' 
+       
+  

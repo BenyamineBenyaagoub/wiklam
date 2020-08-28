@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block title %} {{pregunta}} {% endblock %}
+
+{% block banner_content %}
+<h2 class="page-cover-tittle f_48">{{pregunta.title}}</h2>
+<p>By @{{pregunta.user}}</p>
+{% endblock %}
+
+{% block content %}
+
+<!--================Blog Area =================-->
+<section class="blog_area single-post-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 posts-list">
+                <div class="single-post row">
+
+
+                    <div class="col-lg-12 col-md-12 blog_details">
+                        <div class="row">
+                            <div class="col-md-8 ">
+                                <div class="row">
+                                    <div class=" col-xs-4 px-3"> <img class="author_img rounded-circle"
+                                            src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{usuario.logo}}" alt=""
+                                            style=" width:100px;   height: 100px;"></div>
+                                    <div class=" col-xs-8 px-3">
+                                        <h4 style="color:#333;">@{{usuario.username}}</h4>
+                                        <h4 style="color:#333;">{{usuario.nombre}} {{usuario.apellido}}</h4>
+                                        <h4 style="color:#333;">Desde: {{usuario.date_modified|date:"M, Y"}}</h4>
+                                        <h4><button
+                                                style="color:#333;  color: #333; background: transparent;  border: none; padding: 0px; font-weight: 600;"
+                                                data-toggle="modal" data-target="#responder-coment">Seguidores:
+                                                {{usuario.followers.all|length}}</button></h4>
+
+                                        <p style="color:#333;">{{usuario.biografia}} </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4 my-4 " style="height: 100%;">
+                                {% if not user == usuario %}
+                                {% if folowing %}
+                                <form action="/u/unfollow" class="p-0 m-0" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="user" value="{{usuario.id}}">
+                                    <button class="btn_hover btn_hover_two my-2"> Siguiendo </button>
+                                </form>
+                                {% else %}
+                                <form action="/u/follow" class="p-0 m-0" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="user" value="{{usuario.id}}">
+                                    <button class="btn_hover btn_hover_two my-2"> Seguir </button>
+                                </form>
+
+                                {% endif %}
+
+
+                                <button class="btn_hover btn_hover_two my-2"> <span class="lnr lnr-bubble"></span>
+                                    Enviar Mensaje</button>
+                                {% else %}
+                                <button class="btn_hover btn_hover_two my-2"> <span class="lnr lnr-pencil"></span>
+                                    Editar Perfil</button>
+                                {% endif %}
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 mt-5 blog_right_sidebar row">
+                        <div class=" col-lg-6 col-md-6">
+
+                            <h3 class="widget_title">Posts</h3>
+
+                            <div class="popular_post_widget">
+                                {% for p in posts %}
+                                <div class="media post_item">
+
+                                    <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{p.image_header}}"
+                                        alt="post">
+                                    <div class="media-body">
+                                        <a href="/blog/{{p.id}}">
+                                            <h3>{{p.title}}</h3>
+
+                                        </a>
+                                        <p>{{p.post|striptags|safe|truncatewords:17}}</p>
+                                        <br>
+                                        <p>{{p.created}}</p>
+                                    </div>
+                                </div>
+                                <div class="br"></div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 col-md-6">
+
+                            <h3 class="widget_title">Preguntas</h3>
+
+
+                            {% for p in preguntas %}
+                            <div class="popular_post_widget">
+                                <div class="media post_item ">
+                                    <div class="media-body">
+                                        <a href="/blog/{{p.id}}">
+                                            <h3>{{p.title}}</h3>
+
+                                        </a>
+                                        <p>
+                                            {{p.pregunta|truncatewords:17}}
+                                        </p>
+                                        <p>{{p.created}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="br"></div>
+                            {% endfor %}
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade" id="responder-coment" tabindex="-1" role="dialog" aria-labelledby="responder-comentLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="responder-comentLabel">Seguidores:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="py-5">
+                {% for a in usuario.followers.all %}
+               
+                <a href="/usuario/{{a.username}}">
+                    <div class="comment-form p-2 m-1">
+
+                        <h4 class="p-0 m-0">@{{a.username}} - {{a.nombre}}</h4>
+                        <p> {{a.biografia}} </p>
+                        <div class="br"></div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+           
+
+
+
+
+        </div>
+    </div>
+</div>
+<!--================Blog Area =================-->
+
+
+<style>
+    img {
+        max-width: 100%;
+    }
+
+    .post_item img {
+        max-width: 14%;
+    }
+
+    .banner_area {
+        min-height: 680px;
+        background: -webkit-gradient(linear, left top, right top, from(rgba(4, 9, 30, 0.8)), to(rgba(4, 9, 30, 0.8))),
+        url("{% static 'img/foto-pregunta.jpg'%}");
+        background: -webkit-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)),
+        url("{% static 'img/foto-pregunta.jpg'%}");
+        background: -o-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)),
+        url("{% static 'img/foto-pregunta.jpg'%}");
+        background: linear-gradient(to right, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)),
+        url("{% static 'img/foto-pregunta.jpg'%}");
+        background-size: cover;
+    }
+
+    .banner_area {
+        display: none !important;
+    }
+</style>
+
+
+{% endblock %}
