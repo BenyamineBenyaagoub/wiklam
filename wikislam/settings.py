@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'wmu5mdoat12$=-v4s!(va_+n2_ej(=%s=-d((p0cd0#ti&5spz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['142.93.227.95']
+ALLOWED_HOSTS = ['142.93.227.95','www.wikislam.org']
 
 STATIC_URL = '/static/'
 
