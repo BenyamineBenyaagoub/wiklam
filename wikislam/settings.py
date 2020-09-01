@@ -25,7 +25,7 @@ SECRET_KEY = 'wmu5mdoat12$=-v4s!(va_+n2_ej(=%s=-d((p0cd0#ti&5spz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*','142.93.227.95','www.wikislam.es']
 
 STATIC_URL = '/static/'
 
