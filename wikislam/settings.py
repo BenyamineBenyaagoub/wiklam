@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'wikislam.wsgi.application'
 
 
 
-""" 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -101,7 +101,7 @@ DATABASES = {
         'PORT': '',
     }
 }
-
+""" 
 """ import dj_database_url
 
 from decouple import config
@@ -176,4 +176,3 @@ EMAIL_HOST_PASSWORD = 'fibonacsci'
 EMAIL_PORT = 587
 
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
