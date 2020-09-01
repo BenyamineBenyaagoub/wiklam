@@ -125,7 +125,7 @@
                     <div class="col-lg-8">
                         <div class="sermons_image">
                             <div style="max-height: 350px; overflow: hidden;">
-                                <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}"  alt="">
+                                <img src="http://wikislam.es/media/{{ MEDIA_ROOT }}{{post.image_header}}"  alt="">
 
                             </div>
                             <p>{{post.post|striptags|safe|truncatewords:17}}</p>
@@ -235,7 +235,7 @@
                        </div>
                         <div class="col-md-9">
                             <div class="blog_post">
-                                <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}" alt="">
+                                <img src="http://wikislam.es/media/{{ MEDIA_ROOT }}{{post.image_header}}" alt="">
                                 <div class="blog_details">
                                     <a href="/consultorio/{{p.id}}"><h2>{{p.title}}</h2></a>
                                     <p>{{p.pregunta|slice:":125"}}  {% if p.pregunta|length > 125 %} ... {% endif %}</p>
