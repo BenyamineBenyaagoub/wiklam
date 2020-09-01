@@ -75,6 +75,13 @@
                             </div>
                         </div> -->
 
+
+                <section>
+                    <div class="container">
+                        <iframe src="https://rcm-eu.amazon-adsystem.com/e/cm?o=30&p=48&l=ez&f=ifr&linkID=86e6017e64791d75922a59b0415c5549&t=wikislam-21&tracking_id=wikislam-21" width="728" height="90" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+                    </div>
+                </section>
+
                 <div class="comments-area">
                     <h4>{{respuestas|length}} Respuestas</h4>
 
@@ -83,7 +90,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="{{r.user.logo.url}}" alt="">
+                                    <img src="{%if r.user.logo %}{{r.user.logo.url}}{% endif %}" alt="">
                                 </div>
                                 <div class="desc">
                                     <h5><a href="#">{{r.user}}</a></h5>
@@ -105,7 +112,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="{{r.user.logo.url}}" alt="">
+                                    <img src="{%if r.user.logo %}{{r.user.logo.url}}{% endif %}" alt="">
                                 </div>
                                 <div class="desc">
                                     <h5><a href="#">{{r.user}}</a></h5>
@@ -209,7 +216,10 @@
                 <div class="blog_right_sidebar">
 
               
+                    <aside class="single_sidebar_widget popular_post_widget mb-5">
 
+                        <iframe src="https://rcm-eu.amazon-adsystem.com/e/cm?o=30&p=12&l=ez&f=ifr&linkID=db7d84610e9293f6ffc0b84241f6743a&t=wikislam-21&tracking_id=wikislam-21" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+                    </aside>
 
 
                     <!--   <aside class="single_sidebar_widget search_widget">
@@ -247,7 +257,7 @@
                         <h3 class="widget_title">Posts Más Prulares</h3>
                         {% for p in posts %}
                         <div class="media post_item">
-                            <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{p.image_header}}" alt="post">
+                            <img src="{% if p.image_header %}{{p.image_header.url}}{% endif %}" alt="post">
                             <div class="media-body">
                                 <a href="/blog/{{p.id}}">
                                     <h3>{{p.title}}</h3>

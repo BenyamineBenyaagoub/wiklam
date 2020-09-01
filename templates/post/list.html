@@ -78,7 +78,7 @@
                        </div>
                         <div class="col-md-9">
                             <div class="blog_post">
-                                <img src="{{post.image_header.url}}" alt="">
+                                <img src="{% if post.image_header %}{{post.image_header.url}}{% endif %}" alt="">
                                 <div class="blog_details">
                                     <a href="blog-single.html"><h2>{{post.title}}</h2></a>
                                     <p>{{post.post|striptags|safe|truncatewords:17}}</p>
@@ -116,12 +116,15 @@
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
               
-                  
+                    <aside class="single_sidebar_widget popular_post_widget mb-5">
+
+                        <iframe src="https://rcm-eu.amazon-adsystem.com/e/cm?o=30&p=12&l=ez&f=ifr&linkID=db7d84610e9293f6ffc0b84241f6743a&t=wikislam-21&tracking_id=wikislam-21" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+                    </aside>
                     <aside class="single_sidebar_widget popular_post_widget">
                         <h3 class="widget_title">Posts más populares</h3>
                         {% for p in pposts %}
                         <div class="media post_item">
-                            <img src="{{p.image_header.url}}" alt="post">
+                            <img src="{% if p.image_header %}{{p.image_header.url}}{% endif %}" alt="post">
                             <div class="media-body">
                                 <a href="/blog/{{p.id}}">
                                     <h3>{{p.title}}</h3>
@@ -157,6 +160,13 @@
                             {% endfor %}
                         </ul>
                     </aside>
+                    <aside class="single-sidebar-widget tag_cloud_widget">
+                        <h4 class="widget_title"> Lecturas Recomendadas</h4>
+                        <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-eu.amazon-adsystem.com/e/cm?ref=tf_til&t=wikislam-21&m=amazon&o=30&p=8&l=as1&IS1=1&asins=B07996HY1J&linkId=230563e245fc8f3d5a844f89aeb3a605&bc1=ffffff&lt1=_top&fc1=5bc708&lc1=5797d3&bg1=ffffff&f=ifr">
+                        </iframe>
+                        <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-eu.amazon-adsystem.com/e/cm?ref=tf_til&t=wikislam-21&m=amazon&o=30&p=8&l=as1&IS1=1&asins=841810970X&linkId=642480d50733e623d956d497a3bd7ed2&bc1=ffffff&lt1=_top&fc1=5bc708&lc1=5797d3&bg1=ffffff&f=ifr">
+                        </iframe>
+                         </aside>
                     
                 </div>
             </div>
@@ -170,35 +180,7 @@
 
 </a>
 
-<!-- 
-{%for post in posts %}
-        
-            <div class=" py-5">
-                <div class="item row">
-                    <div class="col-lg-8">
-                        <div class="sermons_image">
-                            <img src="{{post.image_header.url}}" alt="">
-                           
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="sermons_content">
-                            <h3 class="title_color">{{post.title}}</h3>
-                            <ul class="list_style sermons_category">
-                                <li><i class="lnr lnr-user"></i><span>Categoria: </span>{%for a in post.categories.all %}<a href="/blog/category/{{a}}"> {{a}} </a> ,{% endfor %}
-                                </li>
-                                <li><i class="lnr lnr-database"></i><span>Usuario: </span> <a href="">{{post.title}}</a></li>
-                                <li><i class="lnr lnr-calendar-full"></i><span>Fecha:</span> {{post.created}}</li>
-                                <li><i class="lnr lnr-eye"></i><span>Visitas:</span> {{post.views}}</li>
-                            </ul>
-                            <a href="/blog/{{post.id}}" class="btn_hover">Leer más</a>
-                        </div>
-                    </div>
-                </div>
 
-
-            </div>
-{% endfor %} -->
          
 
 

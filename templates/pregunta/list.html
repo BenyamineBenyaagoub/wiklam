@@ -33,7 +33,7 @@
                        </div>
                         <div class="col-md-9">
                             <div class="blog_post">
-                                <img src="{{post.image_header.url}}" alt="">
+                                <img src="{% if post.image_header %}{{post.image_header.url}}{% endif %}" alt="">
                                 <div class="blog_details">
                                     <a href="/consultorio/{{p.id}}"><h2>{{p.title}}</h2></a>
                                     <p>{{p.pregunta|slice:":125"}}  {% if p.pregunta|length > 125 %} ... {% endif %}</p>
@@ -71,13 +71,16 @@
             </div>
             <div class="col-lg-4">
                 <div class="blog_right_sidebar mb-4">
-                  
+                    <aside class="single_sidebar_widget popular_post_widget mb-5">
+
+                        <iframe src="https://rcm-eu.amazon-adsystem.com/e/cm?o=30&p=12&l=ez&f=ifr&linkID=db7d84610e9293f6ffc0b84241f6743a&t=wikislam-21&tracking_id=wikislam-21" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+                    </aside>
                   
                     <aside class="single_sidebar_widget popular_post_widget">
                         <h3 class="widget_title">Posts más populares</h3>
                         {% for p in posts %}
                         <div class="media post_item">
-                            <img src="{{p.image_header.url}}" alt="post">
+                            <img src="{% if p.image_header %}{{p.image_header.url}}{% endif %}" alt="post">
                             <div class="media-body">
                                 <a href="/blog/{{p.id}}">
                                     <h3>{{p.title}}</h3>
@@ -116,10 +119,12 @@
 
 
                     <aside class="single-sidebar-widget tag_cloud_widget">
-                        <h4 class="widget_title">pub</h4>
-
-                        <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-eu.amazon-adsystem.com/e/cm?ref=tf_til&t=wikislam-21&m=amazon&o=30&p=8&l=as1&IS1=1&asins=8494740776&linkId=61c891ea6abd39d7444cec3d5c47480e&bc1=FFFFFF&lt1=_top&fc1=333333&lc1=0066C0&bg1=FFFFFF&f=ifr">
-                        </iframe>                    </aside>
+                        <h4 class="widget_title"> Lecturas Recomendadas</h4>
+                        <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-eu.amazon-adsystem.com/e/cm?ref=tf_til&t=wikislam-21&m=amazon&o=30&p=8&l=as1&IS1=1&asins=B07996HY1J&linkId=230563e245fc8f3d5a844f89aeb3a605&bc1=ffffff&lt1=_top&fc1=5bc708&lc1=5797d3&bg1=ffffff&f=ifr">
+                        </iframe>
+                        <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-eu.amazon-adsystem.com/e/cm?ref=tf_til&t=wikislam-21&m=amazon&o=30&p=8&l=as1&IS1=1&asins=841810970X&linkId=642480d50733e623d956d497a3bd7ed2&bc1=ffffff&lt1=_top&fc1=5bc708&lc1=5797d3&bg1=ffffff&f=ifr">
+                        </iframe>
+                         </aside>
                     
                 </div>
             </div>

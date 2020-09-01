@@ -130,7 +130,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="{{coment.user.logo.url}}" alt="">
+                                    <img src="{%if coment.user.logo %}{{coment.user.logo.url}}{% endif %}" alt="">
                                 </div>
                                 <div class="desc">
                                     <h5><a href="#">{{coment.user}}</a></h5>
@@ -208,6 +208,13 @@
                         </div>
                         <div class="br"></div>
                     </aside> -->
+
+                    <aside class="single_sidebar_widget popular_post_widget mb-5">
+
+                        <iframe src="https://rcm-eu.amazon-adsystem.com/e/cm?o=30&p=12&l=ez&f=ifr&linkID=db7d84610e9293f6ffc0b84241f6743a&t=wikislam-21&tracking_id=wikislam-21" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+                    </aside>
+
+
                     <aside class="single_sidebar_widget author_widget mb-5">
                         <div class="blog_info text-right">
                             <div class="post_tag">
@@ -227,14 +234,13 @@
 
                         </div>
                     </aside>
-
                    
 
                     <aside class="single_sidebar_widget popular_post_widget">
                         <h3 class="widget_title">Últimos Posts</h3>
                         {% for p in posts %}
                         <div class="media post_item">
-                            <img src="{{p.image_header.url}}" alt="post">
+                            <img src="{% if p.image_header %}{{p.image_header.url}}{% endif %}" alt="post">
                             <div class="media-body">
                                 <a href="/blog/{{p.id}}">
                                     <h3>{{p.title}}</h3>
@@ -350,13 +356,13 @@
     .banner_area {
         min-height: 680px;
         background: -webkit-gradient(linear, left top, right top, from(rgba(4, 9, 30, 0.8)), to(rgba(4, 9, 30, 0.8))),
-        url('{{post.image_header.url}}');
+        url('{% if post.image_header %}{{post.image_header.url}}{% endif %}');
         background: -webkit-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)),
-        url('{{post.image_header.url}}');
+        url('{% if post.image_header %}{{post.image_header.url}}{% endif %}');
         background: -o-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)),
-        url('{{post.image_header.url}}');
+        url('{% if post.image_header %}{{post.image_header.url}}{% endif %}');
         background: linear-gradient(to right, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)),
-        url('{{post.image_header.url}}');
+        url('{% if post.image_header %}{{post.image_header.url}}{% endif %}');
         background-size: cover;
     }
 </style>

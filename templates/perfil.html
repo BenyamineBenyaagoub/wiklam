@@ -26,7 +26,7 @@
                             <div class="col-md-8 ">
                                 <div class="row">
                                     <div class=" col-xs-4 px-3"> <img class="author_img rounded-circle"
-                                            src="{{usuario.logo.url}}" alt=""
+                                            src="{%if usuario.logo %}{{usuario.logo.url}}{% endif %}" alt=""
                                             style=" width:100px;   height: 100px;"></div>
                                     <div class=" col-xs-8 px-3">
                                         <h4 style="color:#333;">@{{usuario.username}}</h4>
@@ -63,8 +63,8 @@
                                 <button class="btn_hover btn_hover_two my-2"> <span class="lnr lnr-bubble"></span>
                                     Enviar Mensaje</button>
                                 {% else %}
-                                <button class="btn_hover btn_hover_two my-2"> <span class="lnr lnr-pencil"></span>
-                                    Editar Perfil</button>
+                                <a href="/mod_user" class="btn_hover btn_hover_two my-2"> <span class="lnr lnr-pencil"></span>
+                                    Editar Perfil</a>
                                 {% endif %}
 
 
@@ -84,7 +84,7 @@
                                 {% for p in posts %}
                                 <div class="media post_item">
 
-                                    <img src="{{p.image_header.url}}"
+                                    <img src="{% if p.image_header %}{{p.image_header.url}}{% endif %}"
                                         alt="post">
                                     <div class="media-body">
                                         <a href="/blog/{{p.id}}">
