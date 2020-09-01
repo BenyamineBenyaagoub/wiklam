@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'wmu5mdoat12$=-v4s!(va_+n2_ej(=%s=-d((p0cd0#ti&5spz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['142.93.227.95','www.wikislam.org']
+ALLOWED_HOSTS = ['*','142.93.227.95','www.wikislam.org']
 
 STATIC_URL = '/static/'
 
@@ -81,37 +81,17 @@ WSGI_APPLICATION = 'wikislam.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-""" DATABASES = {
+
+
+
+
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
- """
-
-""" DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'OPTIONS': {
-            'options': '-c search_path=public'
-        },
-        'NAME': 'wikislam',
-        'USER': 'doadmin',
-        'PASSWORD': 't7331xwuo8kch3u1',
-        'HOST': 'db-postgresql-ams3-43167-do-user-7828975-0.a.db.ondigitalocean.com',
-        'PORT': 25060,
-    }
-} """
-
-""" 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-else: """
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -122,7 +102,7 @@ DATABASES = {
         'PORT': '',
     }
 }
-
+""" 
 """ import dj_database_url
 
 from decouple import config

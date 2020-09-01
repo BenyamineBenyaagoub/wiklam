@@ -121,10 +121,13 @@
 
                 {%for post in posts %}
 
-                <div class="item row">
+                <div class="item row" >
                     <div class="col-lg-8">
                         <div class="sermons_image">
-                            <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}" alt="">
+                            <div style="max-height: 350px; overflow: hidden;">
+                                <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}"  alt="">
+
+                            </div>
                             <p>{{post.post|striptags|safe|truncatewords:17}}</p>
                         </div>
                     </div>
