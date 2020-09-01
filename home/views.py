@@ -6,6 +6,7 @@ from django.core.files.storage import FileSystemStorage
 from post.models import *
 from pregunta.models import *
 
+from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth import login, authenticate
 from django.shortcuts import get_list_or_404, get_object_or_404
@@ -52,6 +53,7 @@ class LoginView(TemplateView):
 
 class PerfilView(TemplateView):
 
+    @login_required     
     def get_perfil(request, username):
         user = get_object_or_404(User, username=username)
         preguntas  = Pregunta.objects.filter(user = user.id)
@@ -91,7 +93,8 @@ class Signup(TemplateView):
         else:
             form = SignUpForm()
         return render(request, 'signup.html', {'form': form})
-
+        
+    @login_required     
     def mod_user(request):
         
         form = ModUserForm(request.POST or None, instance =  request.user)  
@@ -113,7 +116,7 @@ class Signup(TemplateView):
             args = {'form': form }
             return render(request, 'modform.html', args)
        
-      
+    @login_required     
     def follow(request):
 
         if request.method == 'POST':
@@ -125,6 +128,7 @@ class Signup(TemplateView):
 
         return redirect(f"/usuario/{user.username}")
 
+    @login_required     
     def unfollow(request):
 
         if request.method == 'POST':

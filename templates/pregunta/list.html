@@ -33,7 +33,7 @@
                        </div>
                         <div class="col-md-9">
                             <div class="blog_post">
-                                <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}" alt="">
+                                <img src="{{post.image_header.url}}" alt="">
                                 <div class="blog_details">
                                     <a href="/consultorio/{{p.id}}"><h2>{{p.title}}</h2></a>
                                     <p>{{p.pregunta|slice:":125"}}  {% if p.pregunta|length > 125 %} ... {% endif %}</p>
@@ -77,7 +77,7 @@
                         <h3 class="widget_title">Posts más populares</h3>
                         {% for p in posts %}
                         <div class="media post_item">
-                            <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{p.image_header}}" alt="post">
+                            <img src="{{p.image_header.url}}" alt="post">
                             <div class="media-body">
                                 <a href="/blog/{{p.id}}">
                                     <h3>{{p.title}}</h3>

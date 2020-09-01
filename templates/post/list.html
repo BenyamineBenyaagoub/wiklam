@@ -78,7 +78,7 @@
                        </div>
                         <div class="col-md-9">
                             <div class="blog_post">
-                                <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}" alt="">
+                                <img src="{{post.image_header.url}}" alt="">
                                 <div class="blog_details">
                                     <a href="blog-single.html"><h2>{{post.title}}</h2></a>
                                     <p>{{post.post|striptags|safe|truncatewords:17}}</p>
@@ -121,7 +121,7 @@
                         <h3 class="widget_title">Posts más populares</h3>
                         {% for p in pposts %}
                         <div class="media post_item">
-                            <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{p.image_header}}" alt="post">
+                            <img src="{{p.image_header.url}}" alt="post">
                             <div class="media-body">
                                 <a href="/blog/{{p.id}}">
                                     <h3>{{p.title}}</h3>
@@ -177,7 +177,7 @@
                 <div class="item row">
                     <div class="col-lg-8">
                         <div class="sermons_image">
-                            <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}" alt="">
+                            <img src="{{post.image_header.url}}" alt="">
                            
                         </div>
                     </div>

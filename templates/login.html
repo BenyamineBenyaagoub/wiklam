@@ -10,7 +10,7 @@
 {% block content %}
 
 
-<section class="sermons_work_area section_gap">
+<!-- <section class="sermons_work_area section_gap">
       <div class="container">
 
             <div class="login-wrap">
@@ -32,19 +32,13 @@
                                                 <input id="pass" name="password" type="password" class="input"
                                                       data-type="password">
                                           </div>
-                                          <!-- <div class="group">
-					<input id="check" type="checkbox" class="check" checked>
-					<label for="check"><span class="icon"></span> Keep me Signed in</label>
-                        </div> -->
+                                        
                                           <br>
                                           <div class="group">
                                                 <input type="submit" class="button" value="Iniciar Sesión">
                                           </div>
 
-                                          <!-- <div class="hr"></div>
-                                          <div class="foot-lnk">
-					<a href="#forgot">Forgot Password?</a>
-				</div> -->
+                                       
                                     </div>
 
                               </form>
@@ -105,16 +99,16 @@
                                           <div class="foot-lnk">
                                                 <label for="tab-1">Ya tienes cuenta?</a>
                                           </div>
-                                    </div>
+                                    </div>S
                               </form>
 
                         </div>
                   </div>
             </div>
       </div>
-</section>
+</section>-->
 <style>
-      *,
+      /*   *,
       :after,
       :before {
             box-sizing: border-box
@@ -137,19 +131,14 @@
       }
 
       .login-wrap {
-            /* width: 100%;
-            margin: auto;
-            max-width: 525px;
-            min-height: 670px;
-            position: relative;  */
+      
             box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
       }
 
       .login-html {
             width: 100%;
             height: 100%;
-            /*  position: absolute; */
-            padding: 90px 70px 50px 70px;
+            padding: 90px 15px 50px 15px;
             background: rgba(40, 57, 101, .9);
       }
 
@@ -297,39 +286,59 @@
 
       .foot-lnk {
             text-align: center;
-      }
+      } */
 </style>
-<!--  <section class="sermons_work_area section_gap">
-<div class="container">
-      <form class="col-xl-5 col-lg-8 col-md-8 m-auto p-5" method="post">
-            {% csrf_token %}
-        
-        
-        
-        
-            <div class="form-group row " style=" height: 100px; ">
-                  <div class="col-sm-3">
-                        <img class="img-login" id="avatar" src="" alt="">
-                  </div>
-                  <div class="col-sm-6 ">
-                        <input type="text" name="username" class="form-control mb-2" id="staticEmail"
+<section class="sermons_work_area section_gap">
+      <div class="container">
+            <form class="col-xl-6 col-lg-8 col-md-8 m-auto p-5 contact_form" method="post">
+                  {% csrf_token %}
+
+
+
+
+                  <div class="form-group">
+                        <label for="username"> Usuario </label>
+                        <input type="text" name="username" class="form-control mb-2" id="username"
                               placeholder="Usuario">
-        
+                  </div>
+                  <div class="form-group">
+                        <label for="inputPassword"> Contraseña </label>
                         <input type="password" name="password" class="form-control " id="inputPassword"
                               placeholder="Contraseña">
                   </div>
-                  <div class="col-sm-3">
-                        <button type="submit" class="btn-login "><i class="fa fa-chevron-right 5x"></i></button></div>
-                  <b class="text-center text-light mt-3 col-sm-12" style="letter-spacing: 1.8px;"> Bienvenido/a </b>
-            </div>
-        
-       
-        
-        </form>
 
 
-           </div>
- </section> -->
+
+
+                  <div class="text-right">
+                        <button class="btn_hover btn_hover_two ">Entrar</button>
+                  </div>
+                  <br>
+                 
+                  {% if form.errors %}
+                  {% for field in form %}
+                  {% for error in field.errors %}
+                  <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                  </div>
+                  {% endfor %}
+                  {% endfor %}
+                  {% for error in form.non_field_errors %}
+                  <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                  </div>
+                  <br>
+                  {% endfor %}
+                  {% endif %}
+                  <div class="text-center">
+                        <a href="/sign_in">Crear cuenta nueva</a>
+                  </div>
+                  <br>
+            </form>
+
+
+      </div>
+</section>
 
 
 <style>
@@ -363,13 +372,10 @@
       /*    .banner_area {
       display: none;
     } */
-/* 
+      /* 
     .banner_area {
       display: none !important;
     } */
-
-
-  
 </style>
 
 

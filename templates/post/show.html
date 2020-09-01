@@ -130,7 +130,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="image/blog/c1.jpg" alt="">
+                                    <img src="{{coment.user.logo.url}}" alt="">
                                 </div>
                                 <div class="desc">
                                     <h5><a href="#">{{coment.user}}</a></h5>
@@ -234,7 +234,7 @@
                         <h3 class="widget_title">Últimos Posts</h3>
                         {% for p in posts %}
                         <div class="media post_item">
-                            <img src="http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{p.image_header}}" alt="post">
+                            <img src="{{p.image_header.url}}" alt="post">
                             <div class="media-body">
                                 <a href="/blog/{{p.id}}">
                                     <h3>{{p.title}}</h3>
@@ -350,13 +350,13 @@
     .banner_area {
         min-height: 680px;
         background: -webkit-gradient(linear, left top, right top, from(rgba(4, 9, 30, 0.8)), to(rgba(4, 9, 30, 0.8))),
-        url('http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}');
+        url('{{post.image_header.url}}');
         background: -webkit-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)),
-        url('http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}');
+        url('{{post.image_header.url}}');
         background: -o-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)),
-        url('http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}');
+        url('{{post.image_header.url}}');
         background: linear-gradient(to right, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)),
-        url('http://127.0.0.1:8000/media/{{ MEDIA_ROOT }}{{post.image_header}}');
+        url('{{post.image_header.url}}');
         background-size: cover;
     }
 </style>

@@ -21,6 +21,10 @@ class SignUpForm(UserCreationForm):
         self.fields['agente'].required = False
         self.fields['empleado'].required = False
         self.fields['logo'].required = False """
+    def __init__(self, *args, **kwargs):
+        super(SignUpForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
 
 class ModUserForm(ModelForm):
 

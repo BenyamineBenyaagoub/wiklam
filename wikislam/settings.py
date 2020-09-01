@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'wmu5mdoat12$=-v4s!(va_+n2_ej(=%s=-d((p0cd0#ti&5spz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*','142.93.227.95','www.wikislam.es']
 
@@ -81,9 +81,8 @@ WSGI_APPLICATION = 'wikislam.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 
-
-
 """
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -94,21 +93,15 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'wikislam',
-        'USER': 'toor',
-        'PASSWORD': 'trabajo1',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'defaultdb',
+        'USER': 'doadmin',
+        'PASSWORD': 'i9obn34wslhq307x',
+        'HOST': 'db-postgresql-ams3-71553-do-user-7828975-0.a.db.ondigitalocean.com',
+        'PORT': '25060',
     }
 }
- 
-""" import dj_database_url
 
-from decouple import config
 
-DATABASES = {
-    'default': dj_database_url.config( default=config('DATABASE_URL') )
-} """
 
 
 # Password validation
