@@ -27,7 +27,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*','142.93.227.95','www.wikislam.es']
 
-STATIC_URL = '/static/'
 
 # Application definition
 
@@ -163,18 +162,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-
-""" STATICFILES_DIRS = (
-    os.path.join( BASE_DIR, 'static' )
-)
- """
-# Media Files
-MEDIA_ROOT = os.path.join(BASE_DIR,'MEDIA')
-MEDIA_URL = "media/"
+MEDIA_URL = '/media/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 EMAIL_USE_TLS = True
