@@ -134,7 +134,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="sermons_content">
-                           <a href="/blog/{{post.id}}" > <h3 class="title_color">{{post.title}}</h3></a>
+                           <a href="/blog/{{post.url}}" > <h3 class="title_color">{{post.title}}</h3></a>
                             <ul class="list_style sermons_category">
                                 <li><i class="lnr lnr-user"></i><span>Categoria: </span> {%for a in post.categories.all %}<a href="/blog/category/{{a}}"> {{a}} </a> ,{% endfor %}
                                 </li>
