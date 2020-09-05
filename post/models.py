@@ -39,7 +39,7 @@ class Post(models.Model):
 
 
     def save(self, *args, **kwargs):
-        self.url = slugify(self.title)
+        self.url = slugify(self.title)+"-"+str(self.id)
         super(Post, self).save(*args, **kwargs)
 
 

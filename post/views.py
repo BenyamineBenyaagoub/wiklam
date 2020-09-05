@@ -26,7 +26,7 @@ class PostView(TemplateView):
                 post = form.save()
                 post.refresh_from_db()  
                 post.save()
-                return redirect(f"/blog/{post.id}")
+                return redirect(f"/blog/{post.url}")
         else:
             form = PostForm()
         return render(request, 'post/crear.html', {'form': form})
@@ -111,7 +111,7 @@ class PostView(TemplateView):
             post.likes.add(user)
 
 
-        return redirect(f"/blog/{post.id}")
+        return redirect(f"/blog/{post.url}")
 
     @login_required     
     def dislike(request):
@@ -125,7 +125,7 @@ class PostView(TemplateView):
             post.likes.remove(user)
             post.dislikes.add(user)
 
-        return redirect(f"/blog/{post.id}")
+        return redirect(f"/blog/{post.url}")
 
 
     def list_post_cetegory(request,category):  
@@ -146,7 +146,7 @@ class CommentView(TemplateView):
 
     @login_required     
     def insert(request , post):
-
+        instance = Post.objects.get(pk = post)
         if request.method == 'POST':
             form = CommentForm(request.POST)
             if form.is_valid():             
@@ -154,7 +154,7 @@ class CommentView(TemplateView):
                 comment.refresh_from_db()  
                 comment.save()
 
-        return redirect(f"/blog/{post}")
+        return redirect(f"/blog/{instance.url}")
 
 
   
