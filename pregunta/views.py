@@ -61,9 +61,10 @@ class PreguntaView(TemplateView):
 
         respuestas = Respuesta.objects.filter(pregunta = pregunta, eshijo = False)  
         
-        
+        posts = Post.objects.all().order_by('-views')[:5:1]
 
-        return render(request,"pregunta/show.html",{"pregunta":pregunta ,"preguntas":preguntas ,"categorys":category , 'respuestas':respuestas })
+
+        return render(request,"pregunta/show.html",{"pregunta":pregunta ,"preguntas":preguntas ,"categorys":category ,"posts":posts , 'respuestas':respuestas })
 
 class RespuestaView(TemplateView):
 

@@ -78,11 +78,11 @@
                        </div>
                         <div class="col-md-9">
                             <div class="blog_post">
-                                <img src="{% if post.image_header %}{{post.image_header.url}}{% endif %}" alt="">
+                                <a href="/blog/{{post.url}}" ><img src="{% if post.image_header %}{{post.image_header.url}}{% endif %}" alt=""></a>
                                 <div class="blog_details">
-                                    <a href="blog-single.html"><h2>{{post.title}}</h2></a>
+                                    <a href="/blog/{{post.url}}"><h2>{{post.title}}</h2></a>
                                     <p>{{post.post|striptags|safe|truncatewords:17}}</p>
-                                    <a href="/blog/{{post.id}}" class="view_btn button_hover">Leer más</a>
+                                    <a href="/blog/{{post.url}}" class="view_btn button_hover">Leer más</a>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                         <div class="media post_item">
                             <img src="{% if p.image_header %}{{p.image_header.url}}{% endif %}" alt="post">
                             <div class="media-body">
-                                <a href="/blog/{{p.id}}">
+                                <a href="/blog/{{p.url}}">
                                     <h3>{{p.title}}</h3>
                                 </a>
                                 <p>{{p.created}}</p>

@@ -31,6 +31,34 @@ class PostView(TemplateView):
             form = PostForm()
         return render(request, 'post/crear.html', {'form': form})
 
+    def editar(request,post):
+
+        i = Post.objects.get(url = post)
+
+        if( i.user == request.user ):
+
+            form = PostForm(request.POST or None, request.FILES or None, instance = i )
+
+            if request.method == 'POST':
+                print("s")
+                if form.is_valid():
+                    print("a")
+                    if request.FILES:
+                        myfile = request.FILES['image_header']
+                        fs = FileSystemStorage()
+                        filename = fs.save( myfile.name, myfile)
+                        uploaded_file_url = fs.url(filename)     
+                    post = form.save()
+                    post.refresh_from_db()  
+                    post.save()
+                    return redirect(f"/blog/{post.id}")
+        
+                
+            return render(request, 'post/editar.html', {'form': form})
+
+        else:
+
+            return redirect("/")
 
     def show(request, post):
 
@@ -42,7 +70,7 @@ class PostView(TemplateView):
 
         posts = Post.objects.all().order_by('-id')[:5:1]
         
-        post = Post.objects.get(pk = post)
+        post = Post.objects.get(url = post)
 
         posta = Post.objects.filter(pk = post.id).update(views = (post.views+1)) 
 

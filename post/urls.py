@@ -11,6 +11,8 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('blog/crear/', PostView.insert , name='crear_post'),
+    path('blog/editar/<post>', PostView.editar , name='editar_post'),
+
     path('blog/', PostView.list_post , name='blog'),
     path('post/like', PostView.like , name='like_post'),
     path('post/dislike', PostView.dislike , name='dislike_post'),

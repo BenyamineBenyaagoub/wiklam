@@ -114,7 +114,8 @@
         <div class="container">
             <div class="section_title text-center">
                 <h2>Últimas entradas al blog</h2>
-                <p>Estas son las últimas entradas creaads en nuestro blog sobre el ISLAM
+                <p>
+                    
                 </p>
             </div>
             <div class="sermons_slider owl-carousel">
@@ -125,22 +126,22 @@
                     <div class="col-lg-8">
                         <div class="sermons_image">
                             <div style="max-height: 350px; overflow: hidden;">
-                                <img src="{{post.image_header.url}}"  alt="">
+                                <a href="/blog/{{post.url}}" ><img src="{{post.image_header.url}}"  alt=""></a>
 
                             </div>
-                            <p>{{post.post|striptags|safe|truncatewords:17}}</p>
+                            <a href="/blog/{{post.url}}" ><p>{{post.post|striptags|safe|truncatewords:17}}</p></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="sermons_content">
-                            <h3 class="title_color">{{post.title}}</h3>
+                           <a href="/blog/{{post.id}}" > <h3 class="title_color">{{post.title}}</h3></a>
                             <ul class="list_style sermons_category">
                                 <li><i class="lnr lnr-user"></i><span>Categoria: </span> {%for a in post.categories.all %}<a href="/blog/category/{{a}}"> {{a}} </a> ,{% endfor %}
                                 </li>
                                 <li><i class="lnr lnr-database"></i><span>Usuario: </span> <a href="/usuario/{{post.user}}">{{post.user}}</a></li>
                                 <li><i class="lnr lnr-calendar-full"></i><span>Date:</span> {{post.created|date:"d - m - Y"}}</li>
                             </ul>
-                            <a href="/blog/{{post.id}}" class="btn_hover">Leer más</a>
+                            <a href="/blog/{{post.url}}" class="btn_hover">Leer más</a>
                         </div>
                     </div>
                 </div>
@@ -456,10 +457,10 @@
     });
 </script>
 <style>
-        .banner_area {
-        min-height: 380px !important;
-    }
-
+      
+    .banner_area {
+    min-height: 620px !important;
+}
     .p-cero .form-control {
         padding: 0px !important;
     }

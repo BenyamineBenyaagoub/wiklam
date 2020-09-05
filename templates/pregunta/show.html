@@ -258,7 +258,7 @@
                         <div class="media post_item">
                             <img src="{% if p.image_header %}{{p.image_header.url}}{% endif %}" alt="post">
                             <div class="media-body">
-                                <a href="/blog/{{p.id}}">
+                                <a href="/blog/{{p.url}}">
                                     <h3>{{p.title}}</h3>
                                 </a>
                                 <p>{{p.created}}</p>
