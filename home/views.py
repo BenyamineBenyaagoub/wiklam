@@ -97,7 +97,7 @@ class Signup(TemplateView):
     @login_required     
     def mod_user(request):
         
-        form = ModUserForm(request.POST or None, instance =  request.user)  
+        form = ModUserForm(request.POST or None, request.FILES or None, instance =  request.user)  
         if request.method == 'POST':
             
             if form.is_valid():
