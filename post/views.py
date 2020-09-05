@@ -51,7 +51,7 @@ class PostView(TemplateView):
                     post = form.save()
                     post.refresh_from_db()  
                     post.save()
-                    return redirect(f"/blog/{post.id}")
+                    return redirect(f"/blog/{post.url}")
         
                 
             return render(request, 'post/editar.html', {'form': form})
