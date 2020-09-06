@@ -15,7 +15,9 @@ urlpatterns = [
     url(r'^eventos/$', EventosView.as_view()),
     
     path('', cargar_home , name='home'),
+    path('politica_de_cookies/', cargar_politica_de_cookies),
     path('politica_de_privacidad/', cargar_politica_de_privacidad),
+
     path('u/follow', Signup.follow , name='sign_in'),
     path('u/unfollow', Signup.unfollow , name='sign_in'),
 

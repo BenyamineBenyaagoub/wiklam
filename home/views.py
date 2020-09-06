@@ -44,6 +44,9 @@ def cargar_home(request):
 def cargar_politica_de_privacidad(request):
     return render(request,"politica-de-privacidad.html")
 
+def cargar_politica_de_cookies(request):
+    return render(request,"politica-de-cookies.html")
+
 class EventosView(TemplateView):
     template_name = 'eventos.html'
 
@@ -98,6 +101,9 @@ class Signup(TemplateView):
     def mod_user(request):
         
         form = ModUserForm(request.POST or None, request.FILES or None, instance =  request.user)  
+
+        
+
         if request.method == 'POST':
             
             if form.is_valid():
